@@ -352,25 +352,7 @@ class LUC_AVLTree {
             node.rightChild = deleteElement(value, node.rightChild);
         }
         else {
-            //System.out.println("Found:" + node.value);
-            //if (node.leftChild == null && node.rightChild == null) {
-            //    node = null;
-            //}
-            //else if (((node.leftChild != null) || (node.rightChild != null)) && !((node.leftChild != null ) && (node.rightChild != null))) {
-            //    //XOR
-            //One child
-            //System.out.println("One child found");
-            //if (node.leftChild!=null){
-            //    Node replacement;
-            //    replacement = node.leftChild;
-            //    node  = replacement;
-            //}
-            //if (node.rightChild!=null){
-            //    Node replacement;
-            //    replacement = node.rightChild;
-            //    node = replacement;
-            //}
-            //}
+        
             if (node.leftChild == null && node.rightChild == null) {
                 //No children
                 return null;
@@ -390,21 +372,16 @@ class LUC_AVLTree {
         }
         node.height = getMaxHeight( getHeight(node.leftChild), getHeight(node.rightChild) + 1);
         int balanceFactor = getBalanceFactor(node);
-        System.out.println("balanceFactor: " + balanceFactor);
         if (balanceFactor > 1 && getBalanceFactor(node.leftChild) >= 0) {
-            System.out.println("LL rotation");
             return LLRotation(node);
         }
         else if (balanceFactor > 1 && getBalanceFactor(node.leftChild) < 0) {
-            System.out.println("LR rotation");
             return LRRotation(node);
         }
         else if (balanceFactor < -1 && getBalanceFactor(node.rightChild) <= 0) {
-            System.out.println("RR rotation");
             return RRRotation(node);
         }
         else if (balanceFactor < -1 && getBalanceFactor(node.rightChild) > 0) {
-            System.out.println("RL rotation");
             return RLRotation(node);
         }
         return node;
